@@ -1,11 +1,31 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
-    //function that will execute every the user write
-    const onChange = () => {
+    //State for login
+    const [ user, saveUser ] = useState({
+        email: '',
+        password: ''
+    });
 
+    //extract of user
+    const { email, password } = user; 
+
+    //function that will execute every the user write
+    const onChange = e => {
+        saveUser({
+            ...user,
+            [e.target.name] : e.target.value
+        });
+    }
+
+    const onSubmit = e => {
+        e.preventDefault();
+        
+        //validar que no haya campos vacios
+
+        //pasarlo al action
     }
 
     return ( 
@@ -13,7 +33,9 @@ const Login = () => {
             <div className="contenedor-form sombra-dark">
                 <h1>Log in</h1>
 
-                <form>
+                <form
+                    onSubmit={onSubmit}
+                >
                     <div className="campo-form">
                         <label htmlFor="email">Email</label>
                         <input 
@@ -21,6 +43,7 @@ const Login = () => {
                             id="email"
                             name="email"
                             placeholder="Enter your email"
+                            value={email}
                             onChange={onChange}
                         />
                     </div>
@@ -32,6 +55,7 @@ const Login = () => {
                             id="password"
                             name="password"
                             placeholder="Enter your password"
+                            value={password}
                             onChange={onChange}
                         />
                     </div>
@@ -44,6 +68,10 @@ const Login = () => {
                         />
                     </div>
                 </form>
+
+                <Link to={'/new-account'} className="enlace-cuenta">
+                    Get Account
+                </Link>
             </div>
         </div>
      );
