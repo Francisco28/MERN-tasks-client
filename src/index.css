@@ -88,6 +88,10 @@ a {
   background-color: transparent;
 }
 
+.btn-eliminar {
+  background: var(--blanco);
+}
+
 @media (min-width: 768px) {
   .contenedor-app {
       display: flex;

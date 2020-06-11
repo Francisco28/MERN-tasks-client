@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Project from './Project';
 import projectContext from '../../context/projects/projectContext';
 
@@ -9,10 +9,17 @@ const ListingProjects = () => {
     const projectsContext = useContext(projectContext);
     
     //extract the projects
-    const { projects } = projectsContext;
+    const { projects, getProjects } = projectsContext;
+
+    //get projects when load the component
+    useEffect(() => {
+        getProjects();
+    }, []);
 
     //review if projects has content
     if(projects.length === 0) return null;
+
+
 
     return ( 
 
