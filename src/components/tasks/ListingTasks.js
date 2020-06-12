@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from 'react';
 import Task from '../tasks/Task';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 
 const ListingTasks = () => {
@@ -10,6 +11,10 @@ const ListingTasks = () => {
     //extract the current project
     const { project, deleteProject } = projectsContext;
 
+    //get the tasks of the project
+    const tasksContext = useContext(taskContext);
+    const { tasksproject } = tasksContext;
+
     
     //if there is not project selected
     if(!project) return <h2>Select a project</h2>
@@ -18,16 +23,14 @@ const ListingTasks = () => {
     const [currentProject] = project;
 
 
-    const tasksProject = [];
-
     return ( 
         <Fragment>
             <h2>Project: {currentProject.name}</h2>
 
             <ul className="listado-tareas">
-                { tasksProject.length === 0 
+                { tasksproject.length === 0 
                     ? (<li className="tarea"><p>There is not tasks</p></li>) 
-                    :  tasksProject.map(task => (
+                    :  tasksproject.map(task => (
                         <Task 
                             task={task}
                         />
