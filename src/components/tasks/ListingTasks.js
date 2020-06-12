@@ -18,12 +18,7 @@ const ListingTasks = () => {
     const [currentProject] = project;
 
 
-    const tasksProject = [
-        { name: 'Choose Platform', status: true },
-        { name: 'Choose Colors', status: false },
-        { name: 'Choose Platforms of pay', status: false },
-        { name: 'Choose Hosting', status: true }
-    ];
+    const tasksProject = [];
 
     return ( 
         <Fragment>
