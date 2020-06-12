@@ -17,7 +17,7 @@ const ListingProjects = () => {
     }, []);
 
     //review if projects has content
-    if(projects.length === 0) return null;
+    if(projects.length === 0) return <p>There is not projects, start creating one!</p>;
 
 
 
