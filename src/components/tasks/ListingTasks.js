@@ -1,7 +1,21 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Task from '../tasks/Task';
+import projectContext from '../../context/projects/projectContext';
+
 
 const ListingTasks = () => {
+
+    //Extract projects of initial state
+    const projectsContext = useContext(projectContext);
+    //extract the current project
+    const { project } = projectsContext;
+
+    
+    //if there is not project selected
+    if(!project) return <h2>Select a project</h2>
+
+    //Array destructuring for extract the current project
+    const [currentProject] = project;
 
 
     const tasksProject = [
@@ -13,7 +27,7 @@ const ListingTasks = () => {
 
     return ( 
         <Fragment>
-            <h2>Project: Virtual Store</h2>
+            <h2>Project: {currentProject.name}</h2>
 
             <ul className="listado-tareas">
                 { tasksProject.length === 0 
