@@ -7,7 +7,9 @@ import projectReducer from './projectReducer';
 import { 
     FORM_PROJECT,
     GET_PROJECTS,
-    ADD_PROJECT
+    ADD_PROJECT,
+    VALIDATE_FORM,
+    CURRENT_PROJECT
 } from '../../types';
 
 
@@ -25,7 +27,9 @@ const ProjectState = props => {
     
     const initialState = {
         projects : [],
-        form : false
+        form : false,
+        errorform: false,
+        project: null
     }
 
     //Dispatch to exect the accions
@@ -58,14 +62,33 @@ const ProjectState = props => {
 
     }
 
+    //validate the form for mistakes
+    const showError = () => {
+        dispatch({
+            type: VALIDATE_FORM
+        })
+    }
+
+    //select the project that the user press clic
+    const currentProject = projectId => {
+        dispatch({
+            type: CURRENT_PROJECT,
+            payload: projectId
+        })
+    }
+
     return (
         <projectContext.Provider
             value={{
                 projects: state.projects,
                 form: state.form,
+                errorform: state.errorform,
+                project: state.project,
                 showForm,
                 getProjects,
-                addProject
+                addProject,
+                showError,
+                currentProject
             }}
         >
             {props.children}
