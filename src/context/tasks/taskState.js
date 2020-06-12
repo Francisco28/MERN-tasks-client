@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
-import TaskContext from './taskContext';
-import TaskReducer from './taskReducer';
+import taskContext from './taskContext';
+import taskReducer from './taskReducer';
 
 
 import { 
@@ -10,24 +10,25 @@ import {
 const TaskState = props => {
     const initialState = {
         tasks: [
-            { name: 'Choose Platform', status: true, proyectId: 1 },
-            { name: 'Choose Colors', status: false, proyectId: 2 },
-            { name: 'Choose Platforms of pay', status: false, proyectId: 3 },
-            { name: 'Choose Hosting', status: true, proyectId: 4 },
-            { name: 'Choose Platform', status: true, proyectId: 1 },
-            { name: 'Choose Colors', status: false, proyectId: 2 },
-            { name: 'Choose Platforms of pay', status: false, proyectId: 3 },
-            { name: 'Choose Platform', status: true, proyectId: 4 },
-            { name: 'Choose Colors', status: false, proyectId: 1 },
-            { name: 'Choose Platforms of pay', status: false, proyectId: 2 },
-            { name: 'Choose Platform', status: true, proyectId: 3 },
-            { name: 'Choose Colors', status: false, proyectId: 4 },
-            { name: 'Choose Platforms of pay', status: false, proyectId: 3 },
-        ]
+            { name: 'Choose Platform', status: true, projectId: 1 },
+            { name: 'Choose Colors', status: false, projectId: 2 },
+            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
+            { name: 'Choose Hosting', status: true, projectId: 4 },
+            { name: 'Choose Platform', status: true, projectId: 1 },
+            { name: 'Choose Colors', status: false, projectId: 2 },
+            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
+            { name: 'Choose Platform', status: true, projectId: 4 },
+            { name: 'Choose Colors', status: false, projectId: 1 },
+            { name: 'Choose Platforms of pay', status: false, projectId: 2 },
+            { name: 'Choose Platform', status: true, projectId: 3 },
+            { name: 'Choose Colors', status: false, projectId: 4 },
+            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
+        ],
+        tasksproject: null
     }
 
     //create dispatch and state
-    const [ state, dispatch ] = useReducer(TaskReducer, initialState);
+    const [ state, dispatch ] = useReducer(taskReducer, initialState);
 
     //create the functions
 
@@ -40,14 +41,15 @@ const TaskState = props => {
     }
 
     return (
-        <TaskContext.Provider
+        <taskContext.Provider
             value={{
                 tasks: state.tasks,
+                tasksproject: state.tasksproject,
                 getTasks
             }}
         >
             {props.children}
-        </TaskContext.Provider>
+        </taskContext.Provider>
     )
 }
 

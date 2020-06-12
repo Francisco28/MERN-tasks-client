@@ -9,9 +9,11 @@ const Project = ({project}) => {
     const projectsContext = useContext(projectContext);
     const { currentProject } = projectsContext;
 
+    
     //get the function of context 'task'
     const tasksContext = useContext(taskContext);
     const { getTasks } = tasksContext;
+
 
     //function to add the current project
     const selectProject = id => {
