@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 
 const FormTask = () => {
@@ -8,11 +9,33 @@ const FormTask = () => {
     const projectsContext = useContext(projectContext);
     const { project } = projectsContext;
 
+    
+    const tasksContext = useContext(taskContext);
+    const { addTask } = tasksContext;
+
+    //State of Form
+    const [ task, saveTask ] = useState({
+        name: ''
+    });
+
+    //destructuring - extract the project name
+    const { name } = task; 
+
     //if there is not project selected
     if(!project) return null;
     
     //Array destructuring for extract the current project
     const [currentProject] = project;
+
+    
+    //read the Form values
+    const hanldeChange = e => {
+        saveTask({
+            ...task,
+            [e.target.name] : e.target.value
+        })
+    }
+
 
     const onSubmit = e => {
         e.preventDefault();
@@ -22,6 +45,9 @@ const FormTask = () => {
         //pass the validation
 
         //add the new task to "state of tasks"
+        task.projectId = currentProject.id;
+        task.status = false;
+        addTask(task);
 
         //restart the form
     }
@@ -37,6 +63,8 @@ const FormTask = () => {
                         className="input-text"
                         placeholder="Task Name..."
                         name="name"
+                        value={name}
+                        onChange={hanldeChange}
                     />
                 </div>
 
