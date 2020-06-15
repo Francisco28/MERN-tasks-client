@@ -2,7 +2,8 @@
 import { 
     TASKS_PROJECT,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK
  } from '../../types';
 
 
@@ -24,7 +25,11 @@ export default (state, action) => {
                 ...state,
                 errortask: true
             }    
-
+        case DELETE_TASK:
+            return {
+                ...state,
+                tasks: state.tasks.filter(task => task.id !== action.payload)
+            }
         default:
             return state;
     }

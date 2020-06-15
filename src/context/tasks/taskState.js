@@ -6,26 +6,27 @@ import taskReducer from './taskReducer';
 import { 
     TASKS_PROJECT,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK
  } from '../../types';
 
 const TaskState = props => {
 
     const initialState = {
         tasks: [
-            { name: 'Choose Platform', status: true, projectId: 1 },
-            { name: 'Choose Colors', status: false, projectId: 2 },
-            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
-            { name: 'Choose Hosting', status: true, projectId: 4 },
-            { name: 'Choose Platform', status: true, projectId: 1 },
-            { name: 'Choose Colors', status: false, projectId: 2 },
-            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
-            { name: 'Choose Platform', status: true, projectId: 4 },
-            { name: 'Choose Colors', status: false, projectId: 1 },
-            { name: 'Choose Platforms of pay', status: false, projectId: 2 },
-            { name: 'Choose Platform', status: true, projectId: 3 },
-            { name: 'Choose Colors', status: false, projectId: 4 },
-            { name: 'Choose Platforms of pay', status: false, projectId: 3 },
+            {id: 1, name: 'Choose Platform', status: true, projectId: 1 },
+            {id: 2, name: 'Choose Colors', status: false, projectId: 2 },
+            {id: 3, name: 'Choose Platforms of pay', status: false, projectId: 3 },
+            {id: 4, name: 'Choose Hosting', status: true, projectId: 4 },
+            {id: 5, name: 'Choose Platform', status: true, projectId: 1 },
+            {id: 6, name: 'Choose Colors', status: false, projectId: 2 },
+            {id: 7, name: 'Choose Platforms of pay', status: false, projectId: 3 },
+            {id: 8, name: 'Choose Platform', status: true, projectId: 4 },
+            {id: 9, name: 'Choose Colors', status: false, projectId: 1 },
+            {id: 10, name: 'Choose Platforms of pay', status: false, projectId: 2 },
+            {id: 11, name: 'Choose Platform', status: true, projectId: 3 },
+            {id: 12, name: 'Choose Colors', status: false, projectId: 4 },
+            {id: 13, name: 'Choose Platforms of pay', status: false, projectId: 3 },
         ],
         tasksproject: null,
         errortask: false
@@ -59,6 +60,14 @@ const TaskState = props => {
         })
     }
 
+    //validate task for id
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
+
     return (
         <taskContext.Provider
             value={{
@@ -67,7 +76,8 @@ const TaskState = props => {
                 errortask: state.errortask,
                 getTasks,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask
             }}
         >
             {props.children}
