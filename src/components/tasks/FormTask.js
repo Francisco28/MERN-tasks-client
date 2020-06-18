@@ -11,7 +11,7 @@ const FormTask = () => {
 
     //tasks
     const tasksContext = useContext(taskContext);
-    const { taskselected, errortask, addTask, validateTask, getTasks } = tasksContext;
+    const { taskselected, errortask, addTask, validateTask, getTasks, updateTask } = tasksContext;
 
     //useEffect: vienen a reemplazar los componentes del ciclo de vida y cuando algo cambia en el state, en el proyecto, recarga esa parte del componente
     //Effect that detect if there is a task selected
@@ -58,13 +58,19 @@ const FormTask = () => {
             return; //para que detenga la ejecucion
         }
 
-        //pass the validation
+        //review if is edition or new task
+        if(taskselected === null) {
+            //add the new task to "state of tasks"
+            task.projectId = currentProject.id;
+            task.status = false;
+            addTask(task);
+        } else {
+            //update task existent
+            updateTask(task);
+        }
 
-        //add the new task to "state of tasks"
-        task.projectId = currentProject.id;
-        task.status = false;
-        addTask(task);
 
+       
         //get and filter the tasks of current project
         getTasks(currentProject.id);
 
