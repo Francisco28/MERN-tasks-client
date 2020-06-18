@@ -8,7 +8,8 @@ import {
     ADD_TASK,
     VALIDATE_TASK,
     DELETE_TASK,
-    STATUS_TASK
+    STATUS_TASK,
+    CURRENT_TASK
  } from '../../types';
 
 const TaskState = props => {
@@ -30,7 +31,8 @@ const TaskState = props => {
             {id: 13, name: 'Choose Platforms of pay', status: false, projectId: 3 },
         ],
         tasksproject: null,
-        errortask: false
+        errortask: false,
+        taskselected: null
     }
 
     //create dispatch and state
@@ -69,6 +71,14 @@ const TaskState = props => {
         })
     }
 
+    //Extract the current task for edition
+    const saveCurrentTask = task => {
+        dispatch({
+            type: CURRENT_TASK,
+            payload: task
+        })
+    }
+
     //change the status of every task
     const changeStatusTask = task => {
         dispatch({
@@ -83,11 +93,13 @@ const TaskState = props => {
                 tasks: state.tasks,
                 tasksproject: state.tasksproject,
                 errortask: state.errortask,
+                taskselected: state.taskselected,
                 getTasks,
                 addTask,
                 validateTask,
                 deleteTask,
-                changeStatusTask
+                changeStatusTask,
+                saveCurrentTask
             }}
         >
             {props.children}

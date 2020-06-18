@@ -11,7 +11,7 @@ const Task = ({task}) => {
 
     //tasks - get the function of task context
     const tasksContext = useContext(taskContext);
-    const { deleteTask, getTasks, changeStatusTask } = tasksContext;
+    const { deleteTask, getTasks, changeStatusTask, saveCurrentTask } = tasksContext;
     
 
     //extract the project
@@ -31,6 +31,11 @@ const Task = ({task}) => {
             task.status = true;
         }
         changeStatusTask(task);
+    }
+
+    //add a current task when the user want to edit
+    const selectTask = task => {
+        saveCurrentTask(task);
     }
 
     return ( 
@@ -63,6 +68,7 @@ const Task = ({task}) => {
                  <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={() => selectTask(task)}
                  >Edit</button>
 
                 <button
