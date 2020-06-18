@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import projectContext from '../../context/projects/projectContext';
 import taskContext from '../../context/tasks/taskContext';
 
@@ -11,7 +11,19 @@ const FormTask = () => {
 
     //tasks
     const tasksContext = useContext(taskContext);
-    const { errortask, addTask, validateTask, getTasks } = tasksContext;
+    const { taskselected, errortask, addTask, validateTask, getTasks } = tasksContext;
+
+    //useEffect: vienen a reemplazar los componentes del ciclo de vida y cuando algo cambia en el state, en el proyecto, recarga esa parte del componente
+    //Effect that detect if there is a task selected
+    useEffect( () => {
+        if(taskselected !== null) {
+            saveTask(taskselected)
+        } else {
+            saveTask({
+                name: ''
+            })
+        }
+    }, [taskselected]);
 
     //State of Form
     const [ task, saveTask ] = useState({
@@ -82,7 +94,7 @@ const FormTask = () => {
                     <input 
                         type="submit"
                         className="btn btn-primario btn-submit btn-block"
-                        value="Add Task"
+                        value={taskselected ? 'Edit Task' : 'Add Task' }
                     />
                 </div>
             </form>
