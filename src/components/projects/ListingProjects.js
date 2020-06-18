@@ -15,6 +15,7 @@ const ListingProjects = () => {
     //get projects when load the component
     useEffect(() => {
         getProjects();
+        //eslint-disable-next-line
     }, []);
 
     //review if projects has content
