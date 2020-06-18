@@ -11,7 +11,7 @@ const Task = ({task}) => {
 
     //tasks - get the function of task context
     const tasksContext = useContext(taskContext);
-    const { deleteTask, getTasks } = tasksContext;
+    const { deleteTask, getTasks, changeStatusTask } = tasksContext;
     
 
     //extract the project
@@ -21,6 +21,16 @@ const Task = ({task}) => {
     const removeTask = id => {
         deleteTask(id);
         getTasks(currentProject.id);
+    }
+
+    //function that modify the status of the tasks
+    const changeStatus = task => {
+        if(task.status) {
+            task.status = false;
+        } else {
+            task.status = true;
+        }
+        changeStatusTask(task);
     }
 
     return ( 
@@ -34,6 +44,7 @@ const Task = ({task}) => {
                         <button 
                             type="button"
                             className="completo"
+                            onClick={ () => changeStatus(task)}
                         >Completed</button>
                     )
                  :
@@ -41,6 +52,7 @@ const Task = ({task}) => {
                         <button 
                             type="button"
                             className="incompleto"
+                            onClick={ () => changeStatus(task)}
                         >Incomplete</button>
                     )
                 
