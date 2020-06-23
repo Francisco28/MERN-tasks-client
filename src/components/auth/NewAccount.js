@@ -33,11 +33,20 @@ const NewAccount = () => {
         //validar que no haya campos vacios
         if(name.trim() === '' || email.trim() === '' || password.trim() === '' || email.trim() === '') {
             showAlert('All the fields are required', 'alerta-error');
+            return;
         }
 
         //password minium of 6 caracters
+        if(password.length < 6) {
+            showAlert('The password must be at least 6 characters', 'alerta-error');
+            return;
+        }
 
         //the 2 passwords must be equals
+        if(password !== confirm) {
+            showAlert('The password are not equals', 'alerta-error');
+            return;
+        }
 
         //pasarlo al action
     }
