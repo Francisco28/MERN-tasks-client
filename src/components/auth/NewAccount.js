@@ -1,12 +1,17 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import  AlertContext  from '../../context/alerts/alertContext';
+import AlertContext  from '../../context/alerts/alertContext';
+import AuthContext from '../../context/authentication/authContext';
 
 const NewAccount = () => {
 
     //extract the values of context
     const alertContext = useContext(AlertContext);
     const { alert, showAlert } = alertContext;
+
+    //extract authContext
+    const authContext = useContext(AuthContext);
+    const { registerUser } = authContext;
 
     //State for login
     const [ user, saveUser ] = useState({
@@ -49,6 +54,11 @@ const NewAccount = () => {
         }
 
         //pasarlo al action
+        registerUser({
+            name,
+            email,
+            password
+        });
     }
 
     return ( 
