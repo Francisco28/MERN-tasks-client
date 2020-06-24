@@ -49,7 +49,7 @@ const AuthState = props => {
             dispatch({
                 type: REGISTER_ERROR,
                 payload: alert
-            })
+            });
         }
     }
 
@@ -73,7 +73,26 @@ const AuthState = props => {
             console.log(error.response);
             dispatch({
                 type: LOGIN_ERROR
-            })
+            });
+        }
+    }
+
+    // When the user Log In
+    const logIn = async data => {
+        try {
+            const response = await clientAxios.post('/api/auth', data);
+            console.log(response);    
+        } catch (error) {
+            console.log(error.response.data.msg);
+            const alert = {
+                msg: error.response.data.msg,
+                category: 'alerta-error'
+            }
+
+            dispatch({
+                type: LOGIN_ERROR,
+                payload: alert
+            });
         }
     }
 
@@ -84,7 +103,8 @@ const AuthState = props => {
                 authenticated: state.authenticated,
                 user: state.user,
                 message: state.message,
-                registerUser
+                registerUser,
+                logIn
             }}
         >
             {props.children}
