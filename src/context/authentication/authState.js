@@ -3,6 +3,7 @@ import AuthReducer from './authReducer';
 import AuthContext from './authContext';
 
 import clientAxios from '../../config/axios';
+import tokenAuth from '../../config/tokenAuth';
 
 import { 
     REGISTER_SUCCESSFUL,
@@ -57,14 +58,19 @@ const AuthState = props => {
         const token = localStorage.getItem('token');
         if(token) {
             //TODO: function to send the token for headers
-        }
+            tokenAuth(token);
+        } 
 
         try {
-
             const response = await clientAxios.get('/api/auth');
-            console.log(response);
+            //console.log(response);
+            dispatch({
+                type: GET_USER,
+                payload: response.data.user
+            });
 
         } catch (error) {
+            console.log(error.response);
             dispatch({
                 type: LOGIN_ERROR
             })
