@@ -6,6 +6,7 @@ import {
     FORM_PROJECT,
     GET_PROJECTS,
     ADD_PROJECT,
+    ERROR_PROJECT,
     VALIDATE_FORM,
     CURRENT_PROJECT,
     DELETE_PROJECT
@@ -20,7 +21,8 @@ const ProjectState = props => {
         projects : [],
         form : false,
         errorform: false,
-        project: null
+        project: null,
+        message: null
     }
 
     //Dispatch to exect the accions
@@ -43,7 +45,15 @@ const ProjectState = props => {
                 payload: result.data.projects
             });
         } catch (error) {
-            console.log(error);
+            const alert = {
+                msg: ' There was a error',
+                category: 'alerta-error'
+            }
+
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
         }
     }
 
@@ -61,7 +71,15 @@ const ProjectState = props => {
             });
             
         } catch (error) {
-            console.log(error);
+            const alert = {
+                msg: ' There was a error',
+                category: 'alerta-error'
+            }
+
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
         }
 
     }
@@ -90,7 +108,15 @@ const ProjectState = props => {
                 payload: projectId
             });
         } catch (error) {
-            console.log(error);
+            const alert = {
+                msg: ' There was a error',
+                category: 'alerta-error'
+            }
+
+            dispatch({
+                type: ERROR_PROJECT,
+                payload: alert
+            });
         }
     }
 
@@ -101,6 +127,7 @@ const ProjectState = props => {
                 form: state.form,
                 errorform: state.errorform,
                 project: state.project,
+                message: state.message,
                 showForm,
                 getProjects,
                 addProject,
