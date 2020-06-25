@@ -87,6 +87,12 @@ a {
   display: block;
   background-color: transparent;
 }
+
+.btn-delete {
+  background-color: var(--blanco);
+  
+}
+
 .cerrar-sesion {
   color: var(--blanco);
 }

@@ -24,6 +24,7 @@ const ListingTasks = () => {
     const [currentProject] = project;
 
 
+
     return ( 
         <Fragment>
             <h2>Project: {currentProject.name}</h2>
@@ -50,8 +51,8 @@ const ListingTasks = () => {
 
             <button 
                 type="button"
-                className="btn btn-eliminar"
-                onClick={ () => deleteProject(currentProject.id) }
+                className="btn btn-delete"
+                onClick={ () => deleteProject(currentProject._id) }
             >Delete Project &times;</button>
 
         </Fragment>
