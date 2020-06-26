@@ -31,7 +31,7 @@ const ListingTasks = () => {
 
             <ul className="listado-tareas">
                 { tasksproject.length === 0 
-                    ? (<li className="tarea"><p>There is not tasks</p></li>) 
+                    ? (<li className="tarea"><p>There are not tasks</p></li>) 
                     :  
                     <TransitionGroup>
                         {tasksproject.map(task => (

@@ -28,7 +28,7 @@ const ListingProjects = () => {
     }, [message]);
 
     //review if projects has content
-    if(projects.length === 0) return <p>There is not projects, start creating one!</p>;
+    if(projects.length === 0) return <p>There are not projects, start creating one!</p>;
 
 
 
