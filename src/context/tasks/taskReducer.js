@@ -32,7 +32,7 @@ export default (state, action) => {
         case DELETE_TASK:
             return {
                 ...state,
-                tasksproject: state.tasksproject.filter(task => task.id !== action.payload)
+                tasksproject: state.tasksproject.filter(task => task._id !== action.payload)
             }
         case UPDATE_TASK:    
         case STATUS_TASK:
