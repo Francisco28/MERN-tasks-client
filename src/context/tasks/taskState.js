@@ -30,11 +30,17 @@ const TaskState = props => {
     //create the functions
 
     //get the tasks of a project
-    const getTasks = projectId => {
-        dispatch({
-            type: TASKS_PROJECT,
-            payload: projectId
-        })
+    const getTasks = async project => {
+        try {
+            const result = await clientAxios.get('/api/tasks', { params: { project } });
+            console.log(result);
+            dispatch({
+                type: TASKS_PROJECT,
+                payload: result.data.tasks
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     //add a task to project selected
