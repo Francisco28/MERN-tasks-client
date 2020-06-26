@@ -10,6 +10,8 @@ const Bar = () => {
 
     useEffect(() => {
         userAuthenticated();
+
+        //eslint-disable-next-line
     }, [])
 
     return ( 
